@@ -11,7 +11,7 @@ RUN mv supervisord.conf /etc/supervisor/supervisord.conf
 
 RUN uv sync --no-cache && \
     pip cache purge && \
-    uv cache clean && \
+    uv cache clean
 
 EXPOSE 8000
 ENTRYPOINT ["supervisord"]
