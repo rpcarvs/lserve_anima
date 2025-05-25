@@ -1,0 +1,30 @@
+name: Build and Deploy to Azure Functions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Log in to Azure Container Registry
+        run: |
+          az acr login --name rcvregistry
+
+      - name: Build Docker image
+        run: |
+          docker build -t rcvregistry-hrdvere2a3d7e4dh.azurecr.io/anima_kernel:${{ github.sha }} .
+
+      - name: Push Docker image to Azure Container Registry
+        run: |
+          docker push rcvregistry-hrdvere2a3d7e4dh.azurecr.io/anima_kernel:${{ github.sha }}

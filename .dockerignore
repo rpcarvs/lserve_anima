@@ -1,0 +1,32 @@
+# Python-specific ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+env/
+venv/
+ENV/
+.venv/
+*.egg-info
+dev
+client.py
+
+# General ignores
+.git
+.gitignore
+node_modules
+tests/
+test/
+*.log
+*.db
+*.sql
+.vscode/
+
+# Distribution/packaging
+dist/
+build/
+*.whl
+
+# System files
+.DS_Store
